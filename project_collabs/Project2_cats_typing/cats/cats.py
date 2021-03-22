@@ -251,27 +251,27 @@ def pawssible_patches(start, goal, limit):
     """
     #required number of edits if the words are different lengths
     edits = abs(len(start)-len(goal))
-
-    def helper(w1, w2, edits):
-        if w1 == '' or w2 = '':  # Fill in the condition
-            # BEGIN
-            return edits
-            # END
-
-        elif edits > limit:
-            # BEGIN
-            return edits
-            # END
-
-        else:
-            add =
-            remove =
-            substitute =
-
-            return min(add, remove, substitute)
-        # BEGIN
-    return helper(start, goal, edits)
-        # END
+    
+    # def helper(w1, w2, edits):
+    #     if w1 == '' or w2 = '':  # Fill in the condition
+    #         # BEGIN
+    #         return edits
+    #         # END
+    #
+    #     elif edits > limit:
+    #         # BEGIN
+    #         return edits
+    #         # END
+    #
+    #     else:
+    #         add =
+    #         remove =
+    #         substitute =
+    #
+    #         return min(add, remove, substitute)
+    #     # BEGIN
+    # return helper(start, goal, edits)
+    #     # END
 
 
 def final_diff(start, goal, limit):
