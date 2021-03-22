@@ -249,6 +249,7 @@ def pawssible_patches(start, goal, limit):
     >>> pawssible_patches("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
+    #required number of edits if the words are different lengths
     edits = abs(len(start)-len(goal))
 
     def helper(w1, w2, edits):
