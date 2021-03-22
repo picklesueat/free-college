@@ -19,7 +19,19 @@ def summation(n, term):
     True
     """
     assert n >= 1
-    "*** YOUR CODE HERE ***"
+    accumulation = 0 #used to store moving sum
+    #the term indexes  will be kept track of throughout the helper() calls as a parameter
+    def helper(counter, term):
+        nonlocal n, accumulation
+        #base case for recursive calls
+        if counter > n: #point of trouble: needs to be '>' to avoid terminating recursion early
+            return accumulation
+        else:
+            accumulation += term(counter)
+            return helper(counter + 1, term)
+
+    return helper(1,term)
+
 
 
 def pascal(row, column):
@@ -34,9 +46,18 @@ def pascal(row, column):
     >>> pascal(4, 2)     # Row 4 (1 4 6 4 1), Column 2
     6
     """
-    "*** YOUR CODE HERE ***"
+    def make_row (previous_row):
+        new_row = [1]
+        for i in range(0, len(previous_row)):
+            new_row.append(previous_row[i]+previous_row[i+1])
+        return new_row
 
-
+    if row == 0 and column == 0:
+        return 1
+    elif column > row:
+        return 0
+    else:
+        return(pascal(row-1))
 def compose1(f, g):
     """"Return a function h, such that h(x) = f(g(x))."""
     def h(x):
