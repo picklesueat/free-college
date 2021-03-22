@@ -46,18 +46,27 @@ def pascal(row, column):
     >>> pascal(4, 2)     # Row 4 (1 4 6 4 1), Column 2
     6
     """
-    def make_row (previous_row):
-        new_row = [1]
-        for i in range(0, len(previous_row)):
-            new_row.append(previous_row[i]+previous_row[i+1])
-        return new_row
+    def make_row (counter):
+        if counter == 0:
+            return [1]
+        else:
+            #all rows start with 1
+            new_row = [1]
+            #recursive call to previous row
+            previous_row = make_row(counter - 1)
+            #pad previous row with 0 to always get 1 at the end of new row
+            old_row = previous_row + [0]
+            for i in range(0, len(previous_row)):
+                new_row.append(old_row[i]+old_row[(i+1)])
+            return new_row
 
-    if row == 0 and column == 0:
-        return 1
-    elif column > row:
+    if column > row: #make sure position selection is valid
         return 0
     else:
-        return(pascal(row-1))
+        target_row = make_row(row)
+        return target_row[column]
+
+
 def compose1(f, g):
     """"Return a function h, such that h(x) = f(g(x))."""
     def h(x):
@@ -86,4 +95,9 @@ def repeated(f, n):
     ...       ['For', 'While'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    if n == 1:
+        return f
+    elif n == 0:
+        return lambda x: x
+    else:
+        return compose1(f,repeated(f, n-1))
