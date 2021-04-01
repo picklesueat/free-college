@@ -1,6 +1,6 @@
 {
     "name": "Lab 8",
-    "endpoint": "cal/cs61a/fa20/lab08",
+    "endpoint": "cal/cs61a/sp21/lab08",
     "src": [
         "lab08.py"
     ],
@@ -9,10 +9,7 @@
         "tests/*.py": "ok_test"
     },
     "default_tests": [
-        "link",
-        "convert_link",
-        "every_other",
-        "cumulative_mul"
+        "Tree"
     ],
     "protocols": [
         "restore",
