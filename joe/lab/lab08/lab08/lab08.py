@@ -7,8 +7,12 @@ def insert_into_all(item, nested_list):
     >>> insert_into_all(0, nl)
     [[0], [0, 1, 2], [0, 3]]
     """
-    "*** YOUR CODE HERE ***"
-
+    ans = []
+    for elem in nested_list:
+        tmp = list(elem)
+        tmp.insert(0, item)
+        ans.append(tmp)
+    return ans
 
 def subseqs(s):
     """Return a nested list (a list of lists) of all subsequences of S.
@@ -20,11 +24,15 @@ def subseqs(s):
     >>> subseqs([])
     [[]]
     """
-    if ________________:
-        ________________
+    if len(s) == 0:
+        return [[]]
+
+    if len(s) == 1:
+        return [s, []]
     else:
-        ________________
-        ________________
+        ans = subseqs(s[1:])
+        ans.extend(insert_into_all(s[0],ans))
+        return ans
 
 
 def non_decrease_subseqs(s):
@@ -41,16 +49,20 @@ def non_decrease_subseqs(s):
     >>> sorted(seqs2)
     [[], [1], [1], [1, 1], [1, 1, 2], [1, 2], [1, 2], [2]]
     """
-    def subseq_helper(s, prev):
-        if not s:
-            return ____________________
-        elif s[0] < prev:
-            return ____________________
-        else:
-            a = ______________________
-            b = ______________________
-            return insert_into_all(________, ______________) + ________________
-    return subseq_helper(____, ____)
+    if len(s) == 0:
+        return [[]]
+
+    if len(s) == 1:
+        return [s, []]
+    else:
+        ans = subseqs(s[1:])
+        for seq in insert_into_all(s[0],ans):
+            if len(seq) == 1:
+                ans.append(seq)
+                continue
+            if seq[0] <= seq[1]:
+                ans.append(seq)
+        return ans
 
 
 def num_trees(n):
@@ -95,7 +107,18 @@ def merge(incr_a, incr_b):
     """
     iter_a, iter_b = iter(incr_a), iter(incr_b)
     next_a, next_b = next(iter_a, None), next(iter_b, None)
-    "*** YOUR CODE HERE ***"
+    while True:
+        if next_a is None and next_b is None:
+            break
+        elif next_a is None or next_b < next_a:
+            yield next_b
+            next_b = next(iter_b, None)
+        elif next_b is None or next_a < next_b:
+            yield next_a
+            next_a = next(iter_a, None)
+        elif next_a == next_b:
+            yield next_a
+            next_a, next_b = next(iter_a, None), next(iter_b, None)
 
 
 class Button:
@@ -235,12 +258,6 @@ def trade(first, second):
     """
     m, n = 1, 1
 
-    equal_prefix = lambda: ______________________
-    while _______________________________:
-        if __________________:
-            m += 1
-        else:
-            n += 1
 
     if equal_prefix():
         first[:m], second[:n] = second[:n], first[:m]
