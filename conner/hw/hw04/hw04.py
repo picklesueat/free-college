@@ -169,7 +169,7 @@ def totals_tree(m):
 
     	left_branch, right_branch = totals_tree(end(left(m))), totals_tree(end(right(m)))
     	return tree(total_weight(m), [left_branch, right_branch])
- 
+
 
 
 def replace_thor_at_leaf(t, thors_replacement):

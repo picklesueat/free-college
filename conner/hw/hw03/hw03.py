@@ -25,7 +25,7 @@ def num_eights(x):
     def is_eight(i):
         if i == 8:
             return 1
-        else: 
+        else:
             return 0
 
     if x < 10:
@@ -68,7 +68,7 @@ def pingpong(n):
     """
 
     def helper(index, ppv, dir):
-        
+
         if index == n:
             return ppv
 
@@ -83,7 +83,7 @@ def pingpong(n):
 
 
 
-    
+
 
 def missing_digits(n):
     """Given a number a that is in sorted, increasing order,
@@ -105,7 +105,7 @@ def missing_digits(n):
     1
     >>> missing_digits(16789) # 2, 3, 4, 5
     4
-    
+
     >>> missing_digits(4) # No missing numbers between 4 and 4
     0
     >>> from construct_check import check
@@ -128,7 +128,7 @@ def missing_digits(n):
 
 
 def get_next_coin(coin):
-    """Return the next coin. 
+    """Return the next coin.
     >>> get_next_coin(1)
     5
     >>> get_next_coin(5)
@@ -175,7 +175,7 @@ def count_coins(change):
     242
     >>> from construct_check import check
     >>> # ban iteration
-    >>> check(HW_SOURCE_FILE, 'count_coins', ['While', 'For'])                                          
+    >>> check(HW_SOURCE_FILE, 'count_coins', ['While', 'For'])
     True
     """
     def count_helper(change, smallest_coin):
@@ -185,7 +185,7 @@ def count_coins(change):
             return 0
         elif smallest_coin == None:
             return 0
-        else: 
+        else:
             with_coin = count_helper(change - smallest_coin, smallest_coin)
             without_coin = count_helper(change, get_next_coin(smallest_coin))
             return with_coin + without_coin
