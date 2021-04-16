@@ -41,7 +41,7 @@
 (define (without-duplicates lst)
     (if (null? lst)
         '()
-        (cons (car lst) (without-duplicates (filter-lst (lambda (x) (not (= x (car lst)))) (cdr lst))))
+        (cons (car lst) (without-duplicates (filter (lambda (x) (not (= x (car lst)))) (cdr lst))))
     )
 )
 
